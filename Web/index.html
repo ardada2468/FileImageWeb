@@ -1,0 +1,305 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Image Processing</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Image Processing</h1>-->
+
+<!--<form id="imageForm" enctype="multipart/form-data">-->
+<!--    <label for="file">Choose an image:</label>-->
+<!--    <input type="file" id="file" name="file" accept="image/*">-->
+<!--    <button type="button" onclick="processImage()">Process Image</button>-->
+<!--</form>-->
+
+<!--<div id="result">-->
+<!--    &lt;!&ndash; Display the processed image here &ndash;&gt;-->
+<!--    <img id="processedImage" alt="Processed Image">-->
+<!--</div>-->
+
+<!--<script>-->
+<!--    function processImage() {-->
+<!--        var formData = new FormData();-->
+<!--        var fileInput = document.getElementById("file");-->
+
+<!--        // Check if a file is selected-->
+<!--        if (fileInput.files.length > 0) {-->
+<!--            formData.append("file", fileInput.files[0]);-->
+
+<!--            // Make a POST request to the Spring Boot endpoint-->
+<!--            fetch('http://localhost:8080/api/processImage', {-->
+<!--                method: 'POST',-->
+<!--                body: formData-->
+<!--            })-->
+<!--                .then(response => response.blob())-->
+<!--                .then(blob => {-->
+<!--                    // Display the processed image-->
+<!--                    var processedImage = document.getElementById("processedImage");-->
+<!--                    processedImage.src = URL.createObjectURL(blob);-->
+
+<!--                    // Show the result div-->
+<!--                    document.getElementById("result").style.display = "block";-->
+<!--                })-->
+<!--                .catch(error => {-->
+<!--                    console.error('Error:', error);-->
+<!--                    // Handle errors (e.g., display an error message)-->
+<!--                });-->
+<!--        } else {-->
+<!--            // Handle case where no file is selected-->
+<!--            console.error('Please choose an image file.');-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Processing</title>
+</head>
+<body>
+<h1>Image Processing</h1>
+
+<form id="imageForm" enctype="multipart/form-data">
+    <label for="file">Choose a file:</label>
+    <input type="file" id="file" name="file" accept="*">
+    <button id="processBtn" type="button" onclick="processImage()">Process File to Image</button>
+    <button id="downloadBtn" type="button" onclick="downloadProcessedFile()">Download Image</button>
+    <button id="decryptBtn" type="button" onclick="processAndDownloadDecrypted()">Process and Download Decrypted File</button>
+</form>
+
+<div id="result">
+    <!-- Display the processed image here -->
+    <img id="processedImage" alt="Processed Image">
+</div>
+
+<div id="howToUse">
+    <h2>Project Description</h2>
+    this project allows you to easily convert any file to a png image (for inconspicuous storage)
+    <br>
+    It also allows you then upload the generated png image and download the original file
+    <br>
+    <h2>How To Use</h2>
+    <ul>
+        <li>
+            <p>
+                If you have a file that you want to convert into an image for inconspicuous storage:
+            <ul>
+                <li>Click "Process File to Image"</li>
+                <li>Click "Download Image"</li>
+            </ul>
+            </p>
+        </li>
+        <li>
+            <p>
+                If you have an already processed image and want to retrieve the original file:
+            <ul>
+                <li>Click "Process and Download Decrypted File"</li>
+                <li><b>Note: It will download as a PNG file; change the file type manually in your file explorer.</b></li>
+            </ul>
+            </p>
+        </li>
+    </ul>
+    <p>
+        Created and Developed by Arnav Dadarya
+    </p>
+</div>
+
+<script>
+    // Your JavaScript code remains unchanged
+</script>
+</body>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    #imageForm {
+        max-width: 500px;
+        margin: 20px auto;
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 15px;
+        font-size: 16px;
+        color: #555;
+    }
+
+    input[type="file"] {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    button {
+        padding: 15px 25px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+        margin: 0 10px;
+    }
+
+    #processBtn {
+        background-color: #4caf50;
+        color: #fff;
+    }
+
+    #downloadBtn {
+        background-color: #3498db;
+        color: #fff;
+    }
+
+    #decryptBtn {
+        background-color: #e74c3c;
+        color: #fff;
+    }
+
+    #result {
+        margin-top: 30px;
+        display: none;
+        text-align: center;
+    }
+
+    #processedImage {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    #howToUse {
+        max-width: 500px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    #howToUse h2 {
+        color: #333;
+    }
+
+    #howToUse ul {
+        /*list-style-type: none;*/
+        padding: 0;
+    }
+
+    #howToUse li {
+        margin-bottom: 10px;
+    }
+</style>
+<script>
+    let processedFileUrl;  // To store the URL of the processed file
+
+    function processImage() {
+        var formData = new FormData();
+        var fileInput = document.getElementById("file");
+
+        // Check if a file is selected
+        if (fileInput.files.length > 0) {
+            formData.append("file", fileInput.files[0]);
+
+            // Make a POST request to the Spring Boot endpoint
+            fetch('http://localhost:8080/api/processImage', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.blob())
+                .then(blob => {
+                    // Display the processed image
+                    var processedImage = document.getElementById("processedImage");
+                    processedImage.src = URL.createObjectURL(blob);
+
+                    // Save the URL of the processed file
+                    processedFileUrl = URL.createObjectURL(blob);
+
+                    // Show the result div
+                    document.getElementById("result").style.display = "block";
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Handle errors (e.g., display an error message)
+                });
+        } else {
+            // Handle case where no file is selected
+            console.error('Please choose an image file.');
+        }
+    }
+
+    function processAndDownloadDecrypted() {
+        var formData = new FormData();
+        var fileInput = document.getElementById("file");
+
+        // Check if a file is selected
+        if (fileInput.files.length > 0) {
+            formData.append("file", fileInput.files[0]);
+
+            // Make a POST request to the Spring Boot endpoint for decryption
+            fetch('http://localhost:8080/api/processImageDecrypt', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.blob())
+                .then(blob => {
+                    // Save the URL of the processed file
+                    processedFileUrl = URL.createObjectURL(blob);
+
+                    // Trigger download of the decrypted file
+                    downloadProcessedFile();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Handle errors (e.g., display an error message)
+                });
+        } else {
+            // Handle case where no file is selected
+            console.error('Please choose an image file.');
+        }
+    }
+
+    function downloadProcessedFile() {
+        // processImage();
+        // Check if a processed file URL is available
+        if (processedFileUrl) {
+            // Create a temporary link element
+            var link = document.createElement('a');
+            link.href = processedFileUrl;
+
+            // Specify the file name for download
+            link.download = 'processed_file.png';
+
+            // Trigger a click on the link to start the download
+            link.click();
+        } else {
+            console.error('No processed file available to download.');
+        }
+    }
+</script>
+
+
+</html>
