@@ -1,59 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <title>Image Processing</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<h1>Image Processing</h1>-->
-
-<!--<form id="imageForm" enctype="multipart/form-data">-->
-<!--    <label for="file">Choose an image:</label>-->
-<!--    <input type="file" id="file" name="file" accept="image/*">-->
-<!--    <button type="button" onclick="processImage()">Process Image</button>-->
-<!--</form>-->
-
-<!--<div id="result">-->
-<!--    &lt;!&ndash; Display the processed image here &ndash;&gt;-->
-<!--    <img id="processedImage" alt="Processed Image">-->
-<!--</div>-->
-
-<!--<script>-->
-<!--    function processImage() {-->
-<!--        var formData = new FormData();-->
-<!--        var fileInput = document.getElementById("file");-->
-
-<!--        // Check if a file is selected-->
-<!--        if (fileInput.files.length > 0) {-->
-<!--            formData.append("file", fileInput.files[0]);-->
-
-<!--            // Make a POST request to the Spring Boot endpoint-->
-<!--            fetch('http://localhost:8080/api/processImage', {-->
-<!--                method: 'POST',-->
-<!--                body: formData-->
-<!--            })-->
-<!--                .then(response => response.blob())-->
-<!--                .then(blob => {-->
-<!--                    // Display the processed image-->
-<!--                    var processedImage = document.getElementById("processedImage");-->
-<!--                    processedImage.src = URL.createObjectURL(blob);-->
-
-<!--                    // Show the result div-->
-<!--                    document.getElementById("result").style.display = "block";-->
-<!--                })-->
-<!--                .catch(error => {-->
-<!--                    console.error('Error:', error);-->
-<!--                    // Handle errors (e.g., display an error message)-->
-<!--                });-->
-<!--        } else {-->
-<!--            // Handle case where no file is selected-->
-<!--            console.error('Please choose an image file.');-->
-<!--        }-->
-<!--    }-->
-<!--</script>-->
-<!--</body>-->
-<!--</html>-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,7 +7,6 @@
 </head>
 <body>
 <h1>Image Processing</h1>
-
 <form id="imageForm" enctype="multipart/form-data">
     <label for="file">Choose a file:</label>
     <input type="file" id="file" name="file" accept="*">
@@ -300,6 +243,4 @@
         }
     }
 </script>
-
-
 </html>
